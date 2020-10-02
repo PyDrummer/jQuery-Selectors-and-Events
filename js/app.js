@@ -33,6 +33,11 @@ $.ajax('./data/page-1.json').then(data => {
   //console.log(photoArray);
 
   photoArray.forEach(photoIndex => {
+    let $newTemplate = $photoTemplate.clone(); //We left off here. Build off this!!!
+    // We dont need to clone all indiviual elements.
+    //
+
+
     let $newOption = $optionEl.clone();
     let $photoH2 = $h2El.clone();
     let $photoImg = $imgEl.clone();
@@ -44,7 +49,7 @@ $.ajax('./data/page-1.json').then(data => {
     $photoTemplate.append($photoH2);
 
     // img stuff here
-    $photoImg.attr({ 'src': photoIndex.image_url, 'alt': photoIndex.keyword });
+    $photoImg.attr({ 'src': photoIndex.image_url, 'alt': photoIndex.keyword, 'class': photoIndex.keyword });
     $photoTemplate.append($photoImg);
 
     // paragraph stuff here
@@ -60,15 +65,17 @@ $.ajax('./data/page-1.json').then(data => {
 });
 
 $('select').on('change', function(event) {
-  console.log(event.target.value);
+  console.log('event target is ', event.target.value);
+  let selected = event.target.value;
   $photoTemplate.hide(); // this works
+
   photoArray.forEach(index => {
-    //console.log(index);
-    if(event.target.value === index.keyword){
-      console.log('Found ', index.keyword);
+    if(selected === index.keyword){
+      console.log('index keyword is ', index.keyword);
+      let keyword = '.' + selected;
       //add a class to the index.keyword
-      $imgEl.addClass('clicked');
-      $('.clicked').fadeIn(1000);
+      console.log('keyword ', $(keyword));
+      $($photoTemplate.keyword).show();
     }
   });
 });
