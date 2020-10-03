@@ -19,40 +19,6 @@ function Photo(image_url, title, description, keyword, horns) {
   this.horns = horns;
 }
 
-// Calling all our data from page-1.json
-$.ajax('./data/page-1.json').then((data) => {
-  data.forEach((photoInfo) => {
-    let photoObject = new Photo(
-      photoInfo.image_url,
-      photoInfo.title,
-      photoInfo.description,
-      photoInfo.keyword,
-      photoInfo.horns
-    );
-
-    render(photoObject);
-
-    //This will fill up the keyWords let global variable
-    if (keyWords.indexOf(photoObject.keyword) === -1) {
-      keyWords.push(photoObject.keyword);
-      $selectEl.append($('<option></option>').text(photoObject.keyword));
-    }
-  });
-
-  // When the user selects from the dropdown it will remove all imgs then only show the ones with our class.
-  $('select').on('change', function (event) {
-    let selected = event.target.value;
-    let takeAway = $('.photo');
-    takeAway.hide();
-    keyWords.forEach((index) => {
-      if (selected === index) {
-        let $bringBack = $(`.${index}`);
-        $bringBack.show();
-      }
-    });
-  });
-});
-
 // This function will render our info to the mustache.
 function render(obj) {
   let templateObj = {
