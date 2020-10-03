@@ -6,7 +6,8 @@ let keyWords = [];
 // Drop down menu selector
 let $selectEl = $('select');
 // Grabbing the id photo-template from HTML section. We will append here.
-let $photoTemplate = $('#photo-template');
+
+// let $photoTemplate = $('#photo-template'); // no longer needed with new mustache template - I think... tbd
 let $photoContainer = $('#photo-container');
 
 // Constructor to build our instances from .ajax
@@ -44,21 +45,24 @@ $.ajax('./data/page-1.json').then((data) => {
       $selectEl.append($('<option></option>').text(photoObject.keyword));
     }
   });
-});
 
-$('select').on('change', function (event) {
-  //console.log('event target is ', event.target.value);
-  let selected = event.target.value;
-  //
-  $photoContainer.children('#photo-template').hide(); // this works
-
-  keyWords.forEach((index) => {
-    if (selected === index) {
-      let $bringBack = $(`.${index}`);
-      $bringBack.show();
-    }
+  $('select').on('change', function (event) {
+    // console.log('event target is ', event.target.value);
+    let selected = event.target.value;
+    //
+    // $photoContainer.children('#photo-template').hide(); // this works
+    let takeAway = $('.photo');
+    // console.log('takeAway is -', takeAway);
+    takeAway.hide();
+    keyWords.forEach((index) => {
+      if (selected === index) {
+        let $bringBack = $(`.${index}`);
+        $bringBack.show();
+      }
+    });
   });
 });
+
 
 function render(obj) {
   let templateObj = {
