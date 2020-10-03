@@ -19,37 +19,61 @@ function Photo(image_url, title, description, keyword, horns) {
 }
 
 // Calling all our data from page-1.json
-$.ajax('./data/page-1.json').then(data => {
+$.ajax('./data/page-1.json').then((data) => {
+  data.forEach((photoInfo) => {
+    let photoObject = new Photo(
+      photoInfo.image_url,
+      photoInfo.title,
+      photoInfo.description,
+      photoInfo.keyword,
+      photoInfo.horns
+    );
+    render(photoObject);
+    // let $newTemplate = $photoTemplate.clone();
 
-  data.forEach(photoInfo => {
+    // $newTemplate.addClass(photoObject.keyword);
+    // $newTemplate.find('h2').text(photoObject.title);
+    // $newTemplate.find('p').text(photoObject.description);
+    // $newTemplate
+    //   .find('img')
+    //   .attr({ src: photoObject.image_url, alt: photoObject.keyword });
+    // $photoContainer.append($newTemplate);
 
-    let photoObject = new Photo(photoInfo.image_url, photoInfo.title, photoInfo.description, photoInfo.keyword, photoInfo.horns);
-    let $newTemplate = $photoTemplate.clone();
-
-    $newTemplate.addClass(photoObject.keyword);
-    $newTemplate.find('h2').text(photoObject.title);
-    $newTemplate.find('p').text(photoObject.description);
-    $newTemplate.find('img').attr({ 'src': photoObject.image_url, 'alt': photoObject.keyword});
-    $photoContainer.append($newTemplate);
-
-    if (keyWords.indexOf(photoObject.keyword) == -1) {
+    if (keyWords.indexOf(photoObject.keyword) === -1) {
       keyWords.push(photoObject.keyword);
       $selectEl.append($('<option></option>').text(photoObject.keyword));
     }
   });
 });
 
-
-$('select').on('change', function(event) {
+$('select').on('change', function (event) {
   //console.log('event target is ', event.target.value);
   let selected = event.target.value;
   //
   $photoContainer.children('#photo-template').hide(); // this works
 
-  keyWords.forEach(index => {
-    if(selected === index){
+  keyWords.forEach((index) => {
+    if (selected === index) {
       let $bringBack = $(`.${index}`);
       $bringBack.show();
     }
   });
 });
+
+function render(obj) {
+  let templateObj = {
+    name: obj.title,
+    src: obj.image_url,
+    keyword: obj.keyword,
+    description: obj.description,
+  };
+  let $template = $('#template').html();
+  // Populate with data
+  let rendered = Mustache.render($template, templateObj);
+  $('#photo-container').append(rendered);
+}
+// this.image_url = image_url;
+//   this.title = title;
+//   this.description = description;
+//   this.keyword = keyword;
+//   this.horns = horns;
