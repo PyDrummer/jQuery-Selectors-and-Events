@@ -1,5 +1,6 @@
 'use strict';
 
+console.log('hello world!');
 //storing all the stuff from Photo constructor
 let keyWords = [];
 
@@ -20,7 +21,7 @@ function Photo(image_url, title, description, keyword, horns) {
 }
 
 // Calling all our data from page-1.json
-$.ajax('./data/page-1.json').then((data) => {
+$.ajax('../data/page-2.json').then((data) => {
   data.forEach((photoInfo) => {
     let photoObject = new Photo(
       photoInfo.image_url,
