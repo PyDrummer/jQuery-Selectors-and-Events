@@ -3,8 +3,11 @@
 //storing all the stuff from Photo constructor
 let keyWords = [];
 
+let hornAmount = [];
+
 // Drop down menu selector
-let $selectEl = $('select');
+let $title = $('#title');
+let $horns = $('#horns');
 // Grabbing the id photo-template from HTML section. We will append here.
 
 // let $photoTemplate = $('#photo-template'); // no longer needed with new mustache template - I think... tbd
@@ -26,6 +29,7 @@ function render(obj) {
     src: obj.image_url,
     keyword: obj.keyword,
     description: obj.description,
+    horns: obj.horns,
   };
   let $template = $('#template').html();
   // Populate with data

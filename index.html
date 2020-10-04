@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <!-- // putting mustache script tag in the head section // -->
     <script id="template" type="x-tmpl-mustache">
-      <section class="photo {{ keyword }}">
+      <section class="photo {{ keyword }} {{ horns }}">
         <h2>{{ name }}</h2>
         <img src={{ src }}>
         <p>{{ description }}</p>
@@ -21,7 +21,8 @@
         <li><a href="">Home</a></li>
         <li><a href="./html/brass.html">Second Page</a></li>
       </ul>
-      <select>
+      <!-- DONT FORGET TO SETUP TWO BUTTONS FOR SORTING -->
+      <select id="title">
         <option value="default">Filter by Keyword</option>
       </select>
     </header>
