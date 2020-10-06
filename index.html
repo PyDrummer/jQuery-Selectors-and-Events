@@ -8,8 +8,8 @@
     <!-- // putting mustache script tag in the head section // -->
     <script id="template" type="x-tmpl-mustache">
       <section class="photo {{ keyword }}">
-        <h2>{{ name }}</h2>
-        <img src={{ src }}>
+        <h2>{{ title }}</h2>
+        <img src={{ image_url }}>
         <p>{{ description }}</p>
       </section>
     </script>
@@ -19,21 +19,29 @@
       <h1>The Gallery of Horns</h1>
       <ul>
         <li><a href="">Home</a></li>
-        <li><a href="./html/brass.html">Second Page</a></li>
+        <li><a id='second-page'>Second Page</a></li>
       </ul>
       <select>
         <option value="default">Filter by Keyword</option>
       </select>
+      <form id='sorting'>
+        <label for="name-sort">Sort by Horns</label>
+        <input type="radio" id="name-sort" name="sort" value="name-sort">
+        <label for="horn-sort">Sort by Horns</label>
+        <input type="radio" id="horn-sort" name="sort" value="horn-sort">
+      </form>
     </header>
     <main>
-      <section id="photo-container">
+      <div id="photo-container">
         <!-- this is where all our photos will go -->
-      </section>
+      </div>
+      <div id="photo-container-two">
+        <!-- this is where all our photos will go -->
+      </div>
       <!-- // grabbed from https://github.com/janl/mustache.js // -->
       <script src="https://unpkg.com/mustache@latest"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="js/app.js"></script>
-      <script src="js/page1json.js"></script>
     </main>
     <footer>
       &copy; 2018 Code Fellows

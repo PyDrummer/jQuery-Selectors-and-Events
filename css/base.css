@@ -4,11 +4,10 @@ body {
   font-family: 'Bangers', cursive;
 }
 
-#photo-container > section > img {
+div > section > img {
   max-width: 200px;
   height: 200px;
 }
-
 /* navbar */
 
 ul {
@@ -33,17 +32,16 @@ a {
 
 /* Flex Box */
 
-#photo-container {
+div {
   display: flex;
   align-items: baseline;
   flex-flow: row wrap;
   justify-content: space-around;
 }
 
-#photo-container > section {
+div > section {
   width: auto;
   text-align: center;
-  
 }
 
 h1 {
